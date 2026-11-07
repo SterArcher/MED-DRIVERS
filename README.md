@@ -97,7 +97,7 @@ Status: ⬜ not obtained · 🟨 partial · ✅ obtained
 
 | Source | Folder | Variables | Provider | Resolution | Coverage | Status |
 |---|---|---|---|---|---|---|
-| HIS | `his/` | ED unit (KPP, Enota za bolezni, INP, Hitri pregledi), Manchester category, ICD-10 diagnosis, age, sex, admission, death in ED, pseudonymised patient ID | UKC Maribor | Per visit | 2021-01-01 – 2026-06-29 | ✅ |
+| HIS | `his/` | ED unit (KPP, Enota za bolezni, INP, Hitri pregledi), Manchester category, ICD-10 diagnosis, age, sex, **hospital admission** (admitting unit and time; daily `adm_*` columns), death in ED, pseudonymised patient ID | UKC Maribor | Per visit | 2021-01-01 – 2026-06-29 | ✅ |
 | eTriaža | `etriaza/` | Arrival time and mode, triage algorithm; linked to HIS by `eTriazaId` = `id` (complete wherever both exist) | UKC Maribor | Per visit | 2018-08-31 – 2026-04-22 | ✅ |
 
 ### Exposures
@@ -128,4 +128,3 @@ Status: ⬜ not obtained · 🟨 partial · ✅ obtained
 | Hospital occupancy | `hospital capacity/` | Hourly occupancy by department (55 departments) | 2021-01-01 – 2024-10-31 | ✅ |
 | Pollen | `pollen/` | 13 taxa + total, Maribor | 2021 – 2023 | ✅ |
 | Moon phase | `moon/` | Illumination and moon age (calculated, Meeus); full and new moon days from the US Naval Observatory API (cached). Negative-control exposure | 2021 – 2026 | ✅ |
-| Hospital admissions | `hospital admissions/` | – | – | ⬜ folder empty |
