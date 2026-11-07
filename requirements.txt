@@ -1,0 +1,27 @@
+# Core
+pandas>=2.2
+numpy
+pyarrow
+openpyxl
+python-calamine   # reads the .xls PCR file
+matplotlib
+plotly            # Sankey diagram
+ipykernel
+nbformat
+nbconvert
+nbstripout        # TEMPORARY: strips notebook outputs on commit (see README, "Before publishing")
+
+# Air quality / maps
+shapely
+requests
+
+# NDVI download (Sentinel-2 via Microsoft Planetary Computer)
+pystac-client
+planetary-computer
+odc-stac
+odc-geo
+xarray
+dask
+rasterio<1.5.2   # 1.5.2 has no macOS wheel; building it needs GDAL
+# Python 3.14 pre-releases (e.g. 3.14.0rc1): pydantic 2.x fails to import; planetary-computer works with 1.10
+pydantic<2 ; python_full_version == "3.14.0rc1"

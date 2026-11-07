@@ -218,3 +218,31 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ---------------------------------------------------------------
+# Study data: NEVER commit (contains patient-level hospital data)
+# ---------------------------------------------------------------
+data/
+*.csv
+*.tsv
+*.xls
+*.xlsx
+*.parquet
+*.feather
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.sav
+*.dta
+*.sqlite
+*.db
+*.zip
+*.gz
+*.tif
+*.tiff
+*.nc
+
+# Kept local, never on GitHub: study documents and all outputs (the data manifest lives in data/)
+/docs/
+/outputs/

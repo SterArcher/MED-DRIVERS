@@ -1,0 +1,9 @@
+# =============================================================================
+# TEMPORARY - REMOVE BEFORE PUBLISHING THE RESULTS
+# Notebook outputs (charts and tables of hospital data) are stripped from every
+# commit, so only code reaches GitHub. Your local notebooks keep their outputs.
+# To publish notebooks WITH outputs: delete the line below and run
+#   .venv/bin/python -m nbstripout --uninstall
+# (see README, "Before publishing").
+# =============================================================================
+*.ipynb filter=nbstripout diff=ipynb
