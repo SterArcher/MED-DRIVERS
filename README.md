@@ -14,11 +14,15 @@ MED-DRIVERS/
 ├── notebooks/
 │   ├── 01_data_aggregation.ipynb   builds the daily panel from all sources
 │   ├── 02_lag_variables.ipynb      adds lags, leads and moving averages to the panel
-│   └── 03_analysis.ipynb           (planned) analysis of the daily panel
+│   ├── 03_1_cross_correlation.ipynb  prewhitened cross-correlation (complementary analysis)
+│   ├── 03_2_dlnm.ipynb             main (confirmatory) analysis: quasi-Poisson DLNM of H1–H3
+│   └── 03_3_comparison.ipynb       compares the cross-correlation (3.1) and DLNM (3.2) results
 ├── scripts/
-│   └── merge_arso_weather.py       merges the yearly ARSO weather exports (reproduces the merged file byte for byte)
+│   ├── merge_arso_weather.py       merges the yearly ARSO weather exports (reproduces the merged file byte for byte)
+│   ├── check_arso_precip_dating.py checks the dating of ARSO precipitation against ERA5
+│   └── validate_dlnm_r.R           validates the Python DLNM against R dlnm (run by 03_2_dlnm.ipynb if Rscript is installed)
 ├── data/        (not on GitHub)    raw/ inputs, processed/ analysis-ready panel + codebook, data_manifest.csv
-├── outputs/     (not on GitHub)    01_data_aggregation/ and 02_lag_variables/ reports, 03_analysis/ results
+├── outputs/     (not on GitHub)    one folder per notebook (reports and results)
 ├── docs/        (not on GitHub)    study documents (deviations log)
 ├── requirements.txt                direct dependencies
 ├── requirements-lock.txt           all dependencies with pinned versions (uv pip compile --universal)

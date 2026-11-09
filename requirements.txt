@@ -11,6 +11,11 @@ nbformat
 nbconvert
 nbstripout        # TEMPORARY: strips notebook outputs on commit (see README, "Before publishing")
 
+# Analysis (time series models, cross-correlation, DLNM)
+scipy
+statsmodels
+patsy             # spline bases (natural cubic splines of time)
+
 # Air quality / maps
 shapely
 requests
