@@ -1,14 +1,14 @@
 # Validate the Python DLNM (notebooks/03_2_dlnm.ipynb) against the R package dlnm.
 #
-# For each model (H1-H3 and the secondary PM2.5 model; one <H>_meta.json per model), the notebook exports:
+# For each primary analysis (TEMP, ILI, PM10, PM25; one <ID>_meta.json per model), the notebook exports:
 #   <H>_data.csv   date, y (outcome, in-sample days only), in_sample (0/1), x (exposure on the analysis scale,
-#                  all days, so lags have their history), temp (for the H3 temperature cross-basis),
+#                  all days, so lags have their history), temp (for the temperature cross-basis of PM10 and PM25),
 #                  z0, z1, ... (all non-exposure columns of the Python design: time spline, adjustments,
 #                  day of week, residual term), in-sample days only
-#   <H>_meta.json  bases (knots, lag range), prediction values (at) and centring value (cen)
-#   <H>_python.csv the Python predictions
+#   <ID>_meta.json  bases (knots, lag range), prediction values (at) and centring value (cen)
+#   <ID>_python.csv the Python predictions
 # This script builds the cross-basis independently with dlnm::crossbasis, fits the same quasi-Poisson model
-# with glm, and writes <H>_r.csv with the cumulative log-RR (dlnm::crosspred), its SE, the Wald F
+# with glm, and writes <ID>_r.csv with the cumulative log-RR (dlnm::crosspred), its SE, the Wald F
 # statistic of the cross-basis and its p-value.
 #
 # Usage: Rscript scripts/validate_dlnm_r.R outputs/03_2_dlnm/r_validation

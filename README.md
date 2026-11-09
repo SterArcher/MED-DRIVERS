@@ -3,9 +3,9 @@ Analysis code for a PhD study on external and internal drivers of emergency depa
 
 ## Preregistration
 
-The study is preregistered on OSF: https://osf.io/6mcbd/overview
+The study is preregistered on OSF: https://osf.io/6mcbd/overview (DOI 10.17605/OSF.IO/6MCBD, registered 2026-11-03). The registration is descriptive and names no hypotheses: its primary aim is to estimate short-term, lagged associations of external factors with daily ED attendance; secondary aims cover arrival streams, triage categories and further exposures.
 
-Deviations from the preregistration are documented and will be reported with the results.
+The analysis has four **primary analyses**, chosen by the authors before the first model fit: temperature → all arrivals, and ILI, PM10 and PM2.5 → medical arrivals (Holm-corrected, calibrated tests). Secondary analyses (streams, triage categories, further exposures) and exploratory analyses (not in the registration) are reported as estimates with 95% confidence intervals. Deviations from the preregistration are documented and will be reported with the results.
 
 ## Repository
 
@@ -15,8 +15,9 @@ MED-DRIVERS/
 │   ├── 01_data_aggregation.ipynb   builds the daily panel from all sources
 │   ├── 02_lag_variables.ipynb      adds lags, leads and moving averages to the panel
 │   ├── 03_1_cross_correlation.ipynb  prewhitened cross-correlation (complementary analysis)
-│   ├── 03_2_dlnm.ipynb             main (confirmatory) analysis: quasi-Poisson DLNM of H1–H3
-│   └── 03_3_comparison.ipynb       compares the cross-correlation (3.1) and DLNM (3.2) results
+│   ├── 03_2_dlnm.ipynb             main analysis: quasi-Poisson DLNM of the four primary analyses, by stream and triage category
+│   ├── 03_3_comparison.ipynb       compares the cross-correlation (3.1) and DLNM (3.2) results
+│   └── 04_article_outputs.ipynb    collects the figures and tables of the main article into outputs/article/
 ├── scripts/
 │   ├── merge_arso_weather.py       merges the yearly ARSO weather exports (reproduces the merged file byte for byte)
 │   ├── check_arso_precip_dating.py checks the dating of ARSO precipitation against ERA5
@@ -78,7 +79,7 @@ uv pip compile requirements.txt --universal --python-version 3.12 -o requirement
 | File | Content |
 |---|---|
 | `daily_panel.parquet` | One row per day, 2021-01-01 to 2026-06-29: all outcomes and exposures |
-| `daily_panel_codebook.csv` | Definition, unit, source, use (primary, secondary, sensitivity, forecasting, exploratory, descriptive, technical), hypothesis and coverage of every column |
+| `daily_panel_codebook.csv` | Definition, unit, source, use (primary, secondary, sensitivity, forecasting, exploratory, descriptive, technical), primary analysis and coverage of every column |
 
 and its reports to `outputs/01_data_aggregation/`:
 
@@ -121,15 +122,15 @@ Status: ⬜ not obtained · 🟨 partial · ✅ obtained
 | SBI TOP | `sbi_top/` | Close, daily log return | Ljubljana Stock Exchange | Trading days | 2018-01-03 – 2026-11-06 | ✅ |
 | NDVI | `ndvi/` | Mean NDVI, Maribor box and Štajerska (Podravska + Savinjska); downloaded by the notebook | Copernicus Sentinel-2 (Planetary Computer) | Per clear scene | from 2020-07 | ✅ |
 | COVID-19 restrictions | `oxcgrt/` | Daily stringency index for Slovenia (Oxford COVID-19 Government Response Tracker); alternative to the 0/1 COVID indicator. Downloaded by the notebook | [OxCGRT](https://github.com/OxCGRT/covid-policy-dataset) (CC BY 4.0) | Daily | 2020-01-01 – 2022-12-31 | ✅ |
+| EMS dispatch | `EMS/` | Registered secondary exposure (EMS missions). Calls per day (roll-out until 2024-09-06 dropped) | ZD Maribor | Per call | 2024-09-07 – 2026-10-13 | ✅ |
+| Football fixtures | `NZS/` | Registered secondary exposure (football games). MNZ Maribor matches per day | NZS / MNZ Maribor | Daily | 2021-04-24 – 2024-05-24 | ✅ |
 | Calendar | `calendar/` | Work-free public holidays (official list cross-referenced with Nager.Date), Martinovo, bridge days, school holidays (OpenHolidays, eastern region) | Official calendar, Nager.Date, OpenHolidays | Daily | 2021 – 2026 | ✅ |
 
-### Other (exploratory, not preregistered)
+### Other (exploratory: not in the registration, or kept exploratory for data quality)
 
 | Source | Folder | Variables | Coverage | Status |
 |---|---|---|---|---|
-| Weather warnings (text) | `arso_warnings/` | Warning type, area, validity period from ARSO forecast texts; no levels, 41% of dates assumed; broad and strict versions. Extraction script not in the repository | 1995 – 2026-08 | 🟨 |
-| EMS dispatch | `EMS/` | Calls per day (roll-out until 2024-09-06 dropped) | 2024-09-07 – 2026-10-13 | ✅ |
-| Football fixtures | `NZS/` | MNZ Maribor matches per day | 2021-04-24 – 2024-05-24 | ✅ |
+| Weather warnings (text) | `arso_warnings/` | Exploratory for data quality (warnings are registered; the official MeteoAlarm archive above is used). Warning type, area, validity period from ARSO forecast texts; no levels, 41% of dates assumed; broad and strict versions. Extraction script not in the repository | 1995 – 2026-08 | 🟨 |
 | Hospital occupancy | `hospital capacity/` | Hourly occupancy by department (55 departments) | 2021-01-01 – 2024-10-31 | ✅ |
 | Pollen | `pollen/` | 13 taxa + total, Maribor | 2021 – 2023 | ✅ |
 | Moon phase | `moon/` | Illumination and moon age (calculated, Meeus); full and new moon days from the US Naval Observatory API (cached). Negative-control exposure | 2021 – 2026 | ✅ |
