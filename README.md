@@ -13,11 +13,12 @@ Deviations from the preregistration are documented and will be reported with the
 MED-DRIVERS/
 ├── notebooks/
 │   ├── 01_data_aggregation.ipynb   builds the daily panel from all sources
-│   └── 02_analysis.ipynb           (planned) analysis of the daily panel
+│   ├── 02_lag_variables.ipynb      adds lags, leads and moving averages to the panel
+│   └── 03_analysis.ipynb           (planned) analysis of the daily panel
 ├── scripts/
 │   └── merge_arso_weather.py       merges the yearly ARSO weather exports (reproduces the merged file byte for byte)
 ├── data/        (not on GitHub)    raw/ inputs, processed/ analysis-ready panel + codebook, data_manifest.csv
-├── outputs/     (not on GitHub)    01_data_aggregation/ reports, 02_analysis/ results
+├── outputs/     (not on GitHub)    01_data_aggregation/ and 02_lag_variables/ reports, 03_analysis/ results
 ├── docs/        (not on GitHub)    study documents (deviations log)
 ├── requirements.txt                direct dependencies
 ├── requirements-lock.txt           all dependencies with pinned versions (uv pip compile --universal)
